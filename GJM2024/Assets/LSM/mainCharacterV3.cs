@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MainCharacterV3 : MonoBehaviour
+public class MainCharacter : MonoBehaviour
 {
     // public MainScene mainScene;
     
@@ -217,5 +217,9 @@ public class MainCharacterV3 : MonoBehaviour
 
     }
 
+    public void TeleportPlayer(GameObject destiny)
+    {
+        transform.position = destiny.transform.position;
+    }
 
 }
