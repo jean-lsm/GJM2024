@@ -27,6 +27,7 @@ public class HudManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
+            Cursor.visible = true;
         }
         
 
@@ -52,6 +53,7 @@ public class HudManager : MonoBehaviour
     public void EndGame(bool status)
     {
         gameEndMenu.SetActive(true);
+        Cursor.visible = true;
         if (status)
         {
             gameEndGood.gameObject.SetActive(true);

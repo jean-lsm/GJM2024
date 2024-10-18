@@ -20,8 +20,7 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("scenario"))
         {
-            // collision.gameObject.GetComponent<character>().health -= 10;
-            // collision.gameObject.GetComponent<character>().checkHealth();
+            // collision.gameObject.GetComponent<character>().health -= 10;me
             //            Destroy(collision.gameObject);
             Destroy(this.gameObject);
         }

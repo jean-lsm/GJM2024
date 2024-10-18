@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+[System.Serializable] 
 public class MainScene : MonoBehaviour
 {
-    public MainCharacter mainCharacter;
+    public OLDMainCharacter mainCharacter;
     public HudManager hudManager;
     public float timeSunrise = 600;
     public GameObject objective;
 
     void Start()
     {
-        mainCharacter = FindAnyObjectByType<MainCharacter>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        mainCharacter = FindAnyObjectByType<OLDMainCharacter>();
         hudManager = FindAnyObjectByType<HudManager>();
         StartCoroutine(LoseAdrenalineContinuous());
     }

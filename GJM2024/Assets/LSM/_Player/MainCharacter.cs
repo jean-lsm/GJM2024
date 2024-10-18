@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MainCharacter : MonoBehaviour
+public class OLDMainCharacter : MonoBehaviour
 {
     // public MainScene mainScene;
     
@@ -91,7 +91,7 @@ public class MainCharacter : MonoBehaviour
         {
             animator.SetTrigger("walk");
             animator.ResetTrigger("idle");
-            walking.Play();
+            // walking.Play();
             Quaternion targetRotation = Quaternion.LookRotation(movementVector);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10);
 
@@ -123,7 +123,7 @@ public class MainCharacter : MonoBehaviour
         {
             animator.SetTrigger("walk");
             animator.ResetTrigger("idle");
-            walking.Play();
+            // walking.Play();
             // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movementVector), Time.deltaTime * 10);
             
             Quaternion targetRotation = Quaternion.LookRotation(movementVector);
@@ -134,7 +134,7 @@ public class MainCharacter : MonoBehaviour
         {
             animator.SetTrigger("idle");
             animator.ResetTrigger("walk");
-            walking.Pause();
+            // walking.Pause();
         }
 
         // if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -151,7 +151,7 @@ public class MainCharacter : MonoBehaviour
             if (!animator.GetCurrentAnimatorStateInfo(1).IsName("punchAttack") && animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 0.0f)
             {
                 animator.SetTrigger("attack");
-                attack.Play();
+                // attack.Play();
             }
 
         }
@@ -165,7 +165,7 @@ public class MainCharacter : MonoBehaviour
             animator.ResetTrigger("walk");
             animator.ResetTrigger("idle");
             StartCoroutine(_Dash());
-            dash.Play();
+            // dash.Play();
 
             Quaternion targetRotation = Quaternion.LookRotation(transform.forward);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 1000000);

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public MainCharacter mc;
+    public OLDMainCharacter mc;
     public TMP_Text contador;
     public List<door> doors;
 
