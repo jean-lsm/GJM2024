@@ -26,11 +26,7 @@ public class HudManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.SetActive(!pauseMenu.activeSelf);
-            Cursor.visible = !Cursor.visible;
-            if(pauseMenu.activeSelf) Time.timeScale = 0;
-            else Time.timeScale = 1;            
-            Debug.Log(Time.timeScale);
+           OpenCloseMenu();
         }
         
 
@@ -42,16 +38,20 @@ public class HudManager : MonoBehaviour
 
     public void OpenCloseMenu()
     {
-        pauseMenu.SetActive(!pauseMenu);
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        Cursor.visible = !Cursor.visible;
+        if(pauseMenu.activeSelf) Time.timeScale = 0;
+        else Time.timeScale = 1;            
+        Debug.Log(Time.timeScale);
     }
 
 
 
-    public void SunsetBarManager()
-    {
-        adrenalineBar.size = mainScene.timeSunrise / 600;
-        // Debug.Log(mainScene.timeSunrise / 600);
-    }
+    // public void SunsetBarManager()
+    // {
+    //     adrenalineBar.size = mainScene.timeSunrise / 600;
+    //     // Debug.Log(mainScene.timeSunrise / 600);
+    // }
 
     public void EndGame(bool status)
     {

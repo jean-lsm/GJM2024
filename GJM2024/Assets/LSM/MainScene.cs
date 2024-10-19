@@ -62,7 +62,7 @@ public class MainScene : MonoBehaviour
             if (timeSunrise <= 1) timeSunrise = 1;
 
             // hudManager.debugText.text = "adrenalina: " + timeSunrise;
-            hudManager.SunsetBarManager();
+            // hudManager.SunsetBarManager();
             yield return new WaitForSeconds(1f);
 
         }

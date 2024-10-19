@@ -5,4 +5,5 @@ using UnityEngine;
 public class TriggerId : MonoBehaviour
 {
     public List<string> id;
+    public string idName;
 }

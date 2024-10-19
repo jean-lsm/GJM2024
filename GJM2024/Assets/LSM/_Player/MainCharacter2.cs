@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MainCharacter : MonoBehaviour
 {
-    public MainScene mainScene;
+    public GameManager gameMainScene;
     
     public Transform groundReference;
     public Rigidbody rigidbody;
@@ -30,16 +30,16 @@ public class MainCharacter : MonoBehaviour
 
     [Header("Sound")]
     public AudioSource hit, attack, heal, walking, dash;
-
-
-
-
     public bool sight;
 
 
+    public GameObject ObjectPlace;
+    public Object objectSelected;
+    
+
     void Start()
     {
-        mainScene = FindAnyObjectByType<MainScene>();
+        gameMainScene = FindAnyObjectByType<GameManager>();
         sight = false;
     }
     void FixedUpdate()
@@ -62,9 +62,9 @@ public class MainCharacter : MonoBehaviour
         //     Movement3PS();
         // }
 
-        Jump();
-        Movement3PS();
-        Dash();
+        // Jump();
+        Movement3PSTopDown();
+        // Dash();
         // Attack();
         
 
@@ -118,6 +118,38 @@ public class MainCharacter : MonoBehaviour
         Vector3 movementVector = new Vector3(horizontal, rigidbody.velocity.y, vertical);
         
         movementVector = myCamera.TransformDirection(movementVector);
+        movementVector.y = rigidbody.velocity.y;
+        rigidbody.velocity = movementVector * speed;
+        
+        if (movementVector.magnitude > 0.1f)
+        {
+            // animator.SetTrigger("walk");
+            // animator.ResetTrigger("idle");
+            // walking.Play();
+            
+            Quaternion targetRotation = Quaternion.LookRotation(movementVector);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10);
+
+        }
+        else
+        {
+            // animator.SetTrigger("idle");
+            // animator.ResetTrigger("walk");
+            // walking.Pause();
+        }
+
+        
+    }
+
+    public void Movement3PSTopDown()
+    {
+        if(!isGrounded) return;
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movementVector = new Vector3(horizontal, rigidbody.velocity.y, vertical);
+        
+        // movementVector = myCamera.TransformDirection(movementVector);
         movementVector.y = rigidbody.velocity.y;
         rigidbody.velocity = movementVector * speed;
         
