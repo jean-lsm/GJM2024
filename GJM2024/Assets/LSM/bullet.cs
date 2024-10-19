@@ -6,7 +6,7 @@ public class bullet : MonoBehaviour
 {
     private void OnEnable()
     {
-        GetComponent<Rigidbody>().AddForce(0, 0, 1000);
+        GetComponent<Rigidbody>().AddForce(0, 0, 10000);
         StartCoroutine(DestroyAfterTime());
     }
     IEnumerator DestroyAfterTime()
@@ -16,12 +16,13 @@ public class bullet : MonoBehaviour
         Debug.Log("se foi");
         yield return null;
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other) 
     {
-        if (collision.gameObject.CompareTag("scenario"))
+        if(other.gameObject.GetComponent<enemy>())
         {
-            // collision.gameObject.GetComponent<character>().health -= 10;me
-            //            Destroy(collision.gameObject);
+            Debug.Log("enemy hit");
+            other.gameObject.GetComponent<enemy>().heatlhEnemy -= 25;
             Destroy(this.gameObject);
         }
     }
