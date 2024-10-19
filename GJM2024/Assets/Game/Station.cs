@@ -13,7 +13,7 @@ public class Station : MonoBehaviour
     private void Start() 
     {
         gameMainScene = FindAnyObjectByType<GameManager>();
-        gameMainScene.stations.Add(this);
+        // gameMainScene.stations.Add(this);
     }
 
     private void Update() 
@@ -28,7 +28,7 @@ public class Station : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<MainCharacter>())
         {
-            gameMainScene.playerCurrentStation = this;
+            // gameMainScene.playerCurrentStation = this;
             playerInRange = true;
             Debug.Log("player enter base: ");
         }
@@ -38,7 +38,7 @@ public class Station : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if(other.GetComponent<MainCharacter>())
         {
-            gameMainScene.playerCurrentStation = null;
+            // gameMainScene.playerCurrentStation = null;
             playerInRange = false;
             Debug.Log("player exit base: ");
         }

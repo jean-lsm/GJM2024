@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public MainCharacter mainCharacter;
     public HudManager hudManager;
     public GameObject objective;
-    public Tower tower;
+    public Castle tower;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         mainCharacter = FindAnyObjectByType<MainCharacter>();
         hudManager = FindAnyObjectByType<HudManager>();
-        
+        castle = FindAnyObjectByType<Castle>();
     }
 
     // Update is called once per frame
@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public List<Station> stations;
+    
     public List<Object> objects;
-    public Station playerCurrentStation;
+    public Castle castle;
     public Object playerCurrentObject;
+    public BuildNode playerCurrentBuildNode;
     
 
     public void ValidateStationObject()
