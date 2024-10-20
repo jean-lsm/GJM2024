@@ -14,6 +14,7 @@ public class enemy : MonoBehaviour
     public int damageTaken;
     public GameObject drop;
     public GameManager gameManager;
+    public Animator animator;
     
     void Start()
     {

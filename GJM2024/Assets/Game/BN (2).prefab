@@ -1059,7 +1059,6 @@ GameObject:
   - component: {fileID: 3372822658647716658}
   - component: {fileID: 3406639797104702841}
   - component: {fileID: 5666912871747339819}
-  - component: {fileID: 2927186676941079944}
   - component: {fileID: 6273406353941955330}
   m_Layer: 0
   m_Name: BuildNode
@@ -1155,22 +1154,6 @@ MonoBehaviour:
   BuildButton: {fileID: 6798694292027267716}
   UpgradeButton: {fileID: 1863044029967218134}
   tower: {fileID: 6394966252949972719}
---- !u!208 &2927186676941079944
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5738650749972184073}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 1, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!65 &6273406353941955330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1190,7 +1173,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 2, z: 5}
+  m_Size: {x: 5, y: 10, z: 5}
   m_Center: {x: 0.34902862, y: -0.00000021372068, z: 0.00000422333}
 --- !u!1 &5799634821521982398
 GameObject:
@@ -1498,9 +1481,9 @@ RectTransform:
   - {fileID: 3071070927204722528}
   m_Father: {fileID: 8508494258001367675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 330, y: -62.5}
   m_SizeDelta: {x: 231.5, y: 67.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6922597578957873114
