@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentAro;
     public List<GameObject> aros;
     public int arosIndex;
+    public GameObject aro3, aro4, aro5;
     public GameObject enemy, enemySpawnPoint;
     public List<GameObject> enemyList;
     public enum Wave { wave1, wave2, wave3, wave4, wave5, wave6 };
@@ -28,11 +30,13 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        navMeshSurface.UpdateNavMesh(data);
         mainCharacter = FindAnyObjectByType<MainCharacter>();
         hudManager = FindAnyObjectByType<HudManager>();
         castle = FindAnyObjectByType<Castle>();
         wave = Wave.wave1;
         StartCoroutine(_SpawnEnemies());
+        
     }
 
     // Update is called once per frame
@@ -55,15 +59,20 @@ public class GameManager : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            currentAro.transform.Rotate(0, 0, +30);
-            navMeshSurface.UpdateNavMesh(data);
+        // if (Input.GetKeyDown(KeyCode.RightArrow))
+        // {
+        //     currentAro.transform.Rotate(0, 0, +30);
+        //     navMeshSurface.UpdateNavMesh(data);
 
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // }
+        // if (Input.GetKeyDown(KeyCode.LeftArrow))
+        // {
+        //     currentAro.transform.Rotate(0, 0, -30);
+        //     navMeshSurface.UpdateNavMesh(data);
+        // }
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            currentAro.transform.Rotate(0, 0, -30);
+            RotateRings();
             navMeshSurface.UpdateNavMesh(data);
         }
     }
@@ -100,6 +109,7 @@ public class GameManager : MonoBehaviour
 
             case Wave.wave3:
                 yield return new WaitForSeconds(15f); 
+                RotateRings();
                 for (int i = 0; i < 10; i++)
                 {
                     GameObject newEnemy = enemy;
@@ -134,6 +144,7 @@ public class GameManager : MonoBehaviour
 
             case Wave.wave5:
                 yield return new WaitForSeconds(15f); 
+                RotateRings();
                 for (int i = 0; i < 18; i++)
                 {
                     GameObject newEnemy = enemy;
@@ -223,6 +234,50 @@ public class GameManager : MonoBehaviour
                 hudManager.ShowHideMessage("Finalizou!", 5);
             }
         }
+    }
+
+    public void RotateRings()
+    {
+        int leftRight = UnityEngine.Random.Range(0,2);
+        //0 = l, 1 = r
+        int timesRotate = UnityEngine.Random.Range(0,3);
+        //0 = n roda, 1 = roda 1 vez, 2 = roda 2 vezes
+        if(leftRight == 0)
+        {
+            aro3.transform.Rotate(0, 0, 60 * timesRotate);
+        }
+        if(leftRight == 1)
+        {
+            aro3.transform.Rotate(0, 0, -60 * timesRotate);
+        }
+        Debug.Log("lr:" + leftRight + " / timesRotate: " + timesRotate);
+        leftRight = UnityEngine.Random.Range(0,2);
+        //0 = l, 1 = r
+        timesRotate = UnityEngine.Random.Range(0,3);
+        //0 = n roda, 1 = roda 1 vez, 2 = roda 2 vezes
+        if(leftRight == 0)
+        {
+            aro4.transform.Rotate(0, 0, 60 * timesRotate);
+        }
+        if(leftRight == 1)
+        {
+            aro4.transform.Rotate(0, 0, -60 * timesRotate);
+        }
+        Debug.Log("lr:" + leftRight + " / timesRotate: " + timesRotate);
+        leftRight = UnityEngine.Random.Range(0,2);
+        //0 = l, 1 = r
+        timesRotate = UnityEngine.Random.Range(0,3);
+        //0 = n roda, 1 = roda 1 vez, 2 = roda 2 vezes
+        if(leftRight == 0)
+        {
+            aro5.transform.Rotate(0, 0, 60 * timesRotate);
+        }
+        if(leftRight == 1)
+        {
+            aro5.transform.Rotate(0, 0, -60 * timesRotate);
+        }
+        Debug.Log("lr:" + leftRight + " / timesRotate: " + timesRotate);
+        navMeshSurface.UpdateNavMesh(data);
     }
 
 
