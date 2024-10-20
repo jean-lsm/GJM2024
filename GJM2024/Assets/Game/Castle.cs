@@ -9,9 +9,9 @@ public class Castle : MonoBehaviour
 
     public int CastleHealth;
     // public int wood, stone;
-    public int gold, resource;
+    public int gold, resourceBettle, resourceSlime, resourceGhost;
     public bool playerInRange;
-    public TMP_Text goldText;
+    public TMP_Text goldText, beetleText, slimeText, ghostText;
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -21,20 +21,19 @@ public class Castle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if(playerInRange && Input.GetKeyDown(KeyCode.E))
-        // {
-        //     gameMainScene.ValidateStationObject();
-        // }
+        beetleText.text = "" + resourceBettle;
+        slimeText.text = "" + resourceSlime;
+        ghostText.text = "" + resourceGhost;
     }
 
     IEnumerator _GainGold()
     {
-        while(CastleHealth > 0)
+        while (CastleHealth > 0)
         {
             Debug.Log("gain gold");
-            gold += 25;
-            goldText.text = "Gold: " + gold + "\n" + "R: " + resource;
-            yield return new WaitForSeconds(1);
+            gold += 5;
+            goldText.text = "" + gold;
+            yield return new WaitForSeconds(2);
         }
         yield return null;
     }
@@ -50,28 +49,30 @@ public class Castle : MonoBehaviour
     //             break;
     //     }
     // }
-    public void Build(string id)
-    {
-        
-    }
     public void ChangeHealth(int value)
     {
         CastleHealth += value;
     }
 
-    public void ChangeResource(int value)
+    public void ChangeResource(int value, string id)
     {
-        if(resource - value < 0)
+        switch (id)
         {
-            Debug.Log("cant");
-            return;
+            case "beetle":
+                resourceBettle += value;
+                break;
+            case "slime":
+                resourceSlime += value;
+                break;
+            case "ghost":
+                resourceGhost += value;
+                break;
         }
-        resource += value;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<MainCharacter>())
+        if (other.GetComponent<MainCharacter>())
         {
             playerInRange = true;
             Debug.Log("player enter castle: ");
@@ -79,9 +80,9 @@ public class Castle : MonoBehaviour
     }
 
 
-    private void OnTriggerExit(Collider other) 
+    private void OnTriggerExit(Collider other)
     {
-        if(other.GetComponent<MainCharacter>())
+        if (other.GetComponent<MainCharacter>())
         {
             playerInRange = false;
             Debug.Log("player exit castle: ");

@@ -8,10 +8,15 @@ public class Tower : MonoBehaviour
     public GameObject target;
     public bool enemyInRange, isShooting;
     public GameObject bulletProjectile, bulletSpawner;
-    public float timeToShoot = 1.5f;
     public bool tripleShot;
-    void Start()
+    void Update()
     {
+        if (target != null)
+        {
+            enemyDirection = target.transform.position - transform.position;
+            enemyDirection.y = 0;
+            transform.rotation = Quaternion.LookRotation(enemyDirection);
+        }
 
     }
 
@@ -26,6 +31,16 @@ public class Tower : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<enemy>())
+        {
+            Debug.Log("enemy stay range");
+            enemyInRange = true;
+            target = other.gameObject;
+            if (!isShooting) StartCoroutine(_Shoot());
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<enemy>())
@@ -44,23 +59,25 @@ public class Tower : MonoBehaviour
         {
             isShooting = true;
             Debug.Log("shooting enemy");
-            enemyDirection = target.transform.position - transform.position;
-            enemyDirection.y = 0;
-            transform.rotation = Quaternion.LookRotation(enemyDirection);
+
 
             GameObject _bulletProjectile = Instantiate(bulletProjectile, bulletSpawner.transform.position, transform.rotation);
             _bulletProjectile.transform.LookAt(target.transform);
             if (tripleShot)
             {
+                yield return new WaitForSeconds(0.5f);
                 GameObject _bulletProjectile2 = Instantiate(bulletProjectile, bulletSpawner.transform.position, transform.rotation);
                 _bulletProjectile2.transform.LookAt(target.transform);
 
+                yield return new WaitForSeconds(0.5f);
                 GameObject _bulletProjectile3 = Instantiate(bulletProjectile, bulletSpawner.transform.position, transform.rotation);
                 _bulletProjectile3.transform.LookAt(target.transform);
             }
-            yield return new WaitForSeconds(timeToShoot);
+            yield return new WaitForSeconds(2f);
         }
         isShooting = false;
         yield return null;
     }
+
+
 }

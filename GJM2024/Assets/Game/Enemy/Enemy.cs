@@ -1,65 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class enemy : MonoBehaviour
 {
+    public string id;
     public Transform target;
     public NavMeshAgent agent;
     public int heatlhEnemy;
+    public int damageTaken;
     public GameObject drop;
     public GameManager gameManager;
+    
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
-        gameManager.OnChangeNavMesh +=ChangeNavMesh;
-        // gameManager.enemyList.Add(this.gameObject);
+        gameManager.enemyList.Add(this.gameObject);
         target = gameManager.castle.transform;
-        ChangeNavMesh();
-        // StartCoroutine(Move());
+        agent.destination = target.position;
+        switch (id)
+        {
+            case "beetle":
+                damageTaken = 50;
+                break;
+            case "slime":
+                agent.speed /= 2;
+                damageTaken /= 2;
+                break;
+            case "ghost":
+                
+                break;
+            
+        }
     }
 
-    private void ChangeNavMesh()
+
+    private void Update() 
     {
-        agent.destination = target.position;
-        transform.LookAt(target);
         if(heatlhEnemy < 1)
         {
-            Instantiate(drop);
+            GameObject _drop = drop;
+            _drop.GetComponent<Drop>().id = this.id;
+            Instantiate(_drop,  this.transform.position, transform.rotation);
+            Debug.Log("enemy dead");
+
+            gameManager.castle.gold += 5;
             gameManager.enemyList.Remove(this.gameObject);
             gameManager.VerifyWave();
             Destroy(this.gameObject);
-            
         } 
-        //transform.LookAt(player);
-    }
-    public void RecalculatePath()
-    {
-        Debug.Log("aqui enemy");
-        agent.isStopped = true;
-        // agent.ResetPath();
-        Invoke("outro", 3);
         
     }
-
-    public void outro()
-    {
-        agent.isStopped = false;
-        agent.SetDestination(target.transform.position);
-    }        
-        
-        // agent.CalculatePath(this.transform.position, target.transform.position, agent.areaMask, agent.path);
-        
-        
-        // agent.CalculatePath(Vector3 sourcePosition, Vector3 targetPosition, int areaMask, AI.NavMeshPath path);
-        // agent.CalculatePath()
     
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.CompareTag("aros"))
+        if(other.GetComponent<Castle>())
         {
-            this.transform.SetParent(other.transform, true);
+            gameManager.castle.ChangeHealth(-25);
         }
         
     }
