@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildNode : MonoBehaviour
@@ -24,9 +25,9 @@ public class BuildNode : MonoBehaviour
 
     public void BuildTower(string towerId)
     {
-        if (castle.gold - 160 > 0)
+        if (castle.gold - 36 > 0)
         {
-            castle.gold -= 160;
+            castle.gold -= 36;
             BuildButton.SetActive(false);
             built = true;
             tower.gameObject.SetActive(true);
@@ -36,37 +37,58 @@ public class BuildNode : MonoBehaviour
         {
             Debug.Log("cant build");
         }
-        
-        
+
+
     }
 
     public void UpgradeTower(string id)
     {
-        Debug.Log(id);
-        if (castle.resource - 20 > 0)
+        switch (id)
         {
-            switch (id)
-            {
-                case "tripleShot":
-                    castle.resource -= 20;
+            case "resourceBettle":
+                if ((castle.gold - 12 > 0) && (castle.resourceBettle - 20 > 0))
+                {
+                    castle.resourceBettle -= 20;
+                    castle.gold -= 12;
                     UpgradeButton.SetActive(false);
                     tower.tripleShot = true;
-                    Debug.Log("ok");
+                    Debug.Log("comprou triple shot");
+                }
+                else
+                {
+                    Debug.Log("sem resourceBettle");
+                }
                 break;
-                case "fastShot":
-                    castle.resource -= 20;
+            case "resourceSlime":
+                if ((castle.gold - 12 > 0) && (castle.resourceSlime - 20 > 0))
+                {
+                    castle.resourceSlime -= 20;
+                    castle.gold -= 12;
                     UpgradeButton.SetActive(false);
-                    tower.timeToShoot = 0.75f;
-                    Debug.Log("ok");
+                    tower.tripleShot = true;
+                    Debug.Log("comprou triple shot");
+                }
+                else
+                {
+                    Debug.Log("sem resourceBettle");
+                }
                 break;
-                
-            }
-            
+            case "resourceGhost":
+                if ((castle.gold - 12 > 0) && (castle.resourceGhost - 20 > 0))
+                {
+                    castle.resourceBettle -= 20;
+                    castle.gold -= 12;
+                    UpgradeButton.SetActive(false);
+                    tower.tripleShot = true;
+                    Debug.Log("comprou triple shot");
+                }
+                else
+                {
+                    Debug.Log("sem resourceBettle");
+                }
+                break;
         }
-        else
-        {
-            Debug.Log("cant upgrade");
-        }
+        Debug.Log(id);
     }
 
 

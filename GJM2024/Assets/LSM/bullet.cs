@@ -13,7 +13,7 @@ public class bullet : MonoBehaviour
 
     private void Update() 
     {
-        transform.Translate(Vector3.forward * 5f);
+        transform.Translate(Vector3.forward * 10f);
     }
     IEnumerator DestroyAfterTime()
     {
@@ -27,7 +27,7 @@ public class bullet : MonoBehaviour
     {
         if(other.gameObject.GetComponent<enemy>())
         {
-            other.gameObject.GetComponent<enemy>().heatlhEnemy -= 50;
+            other.gameObject.GetComponent<enemy>().heatlhEnemy -= other.gameObject.GetComponent<enemy>().damageTaken;
             Debug.Log("enemy health: " + other.gameObject.GetComponent<enemy>().heatlhEnemy);
             Destroy(this.gameObject);
         }
