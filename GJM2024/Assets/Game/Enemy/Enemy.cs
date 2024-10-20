@@ -14,7 +14,7 @@ public class enemy : MonoBehaviour
     public int damageTaken;
     public GameObject drop;
     public GameManager gameManager;
-    public Animator animator;
+    public GameObject sprite;
     
     void Start()
     {
@@ -53,6 +53,7 @@ public class enemy : MonoBehaviour
             gameManager.VerifyWave();
             Destroy(this.gameObject);
         } 
+        // sprite.gameObject.transform.LookAt(Camera.main.transform);
         
     }
     

@@ -38,6 +38,7 @@ public class MainCharacter : MonoBehaviour
     public GameObject ObjectPlace;
     public Object objectSelected;
     
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -161,8 +162,8 @@ public class MainCharacter : MonoBehaviour
         
         if (movementVector.magnitude > 0.1f)
         {
-            // animator.SetTrigger("walk");
-            // animator.ResetTrigger("idle");
+            animator.SetTrigger("walk");
+            animator.ResetTrigger("idle");
             // walking.Play();
             
             Quaternion targetRotation = Quaternion.LookRotation(movementVector);
@@ -171,11 +172,11 @@ public class MainCharacter : MonoBehaviour
         }
         else
         {
-            // animator.SetTrigger("idle");
-            // animator.ResetTrigger("walk");
+            animator.SetTrigger("idle");
+            animator.ResetTrigger("walk");
             // walking.Pause();
         }
-
+        
         
     }
 

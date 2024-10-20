@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
-        // RotateRings();
+        RotateRings();
         navMeshSurface.UpdateNavMesh(data);
         mainCharacter = FindAnyObjectByType<MainCharacter>();
         hudManager = FindAnyObjectByType<HudManager>();
@@ -55,7 +55,15 @@ public class GameManager : MonoBehaviour
             currentAro = aros[arosIndex];
         }
 
+/*
 
+4
+10
+22
+39
+62
+93
+*/
 
 
 
@@ -69,7 +77,7 @@ public class GameManager : MonoBehaviour
         // {
         //     currentAro.transform.Rotate(0, 0, -30);
         //     navMeshSurface.UpdateNavMesh(data);
-        // }
+        // // }
         // if (Input.GetKeyDown(KeyCode.Space))
         // {
         //     RotateRings();
@@ -80,6 +88,7 @@ public class GameManager : MonoBehaviour
     public bool prewave;
     IEnumerator _SpawnEnemies()
     {
+
         switch (wave)
         {
             case Wave.wave1:
