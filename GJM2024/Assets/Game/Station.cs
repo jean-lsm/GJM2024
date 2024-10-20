@@ -18,10 +18,10 @@ public class Station : MonoBehaviour
 
     private void Update() 
     {
-        if(playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            gameMainScene.ValidateStationObject();
-        }
+        // if(playerInRange && Input.GetKeyDown(KeyCode.E))
+        // {
+        //     gameMainScene.ValidateStationObject();
+        // }
     }
 
     

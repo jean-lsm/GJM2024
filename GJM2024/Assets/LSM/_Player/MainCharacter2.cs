@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class MainCharacter : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class MainCharacter : MonoBehaviour
     public Transform myCamera;
     public Transform myCameraRotationReference;
     public GameObject CameraFPS, CameraTPS;
+    public PositionConstraint cameraConstraint;
 
     [Header("Dash")]
     public int dashForce;
@@ -45,7 +47,10 @@ public class MainCharacter : MonoBehaviour
     void FixedUpdate()
     {
 
-        if(Input.GetKeyDown(KeyCode.E)) sight = !sight;
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            cameraConstraint.constraintActive = !cameraConstraint.constraintActive;
+        }
 
         // if(sight)   // fps
         // {
@@ -144,13 +149,14 @@ public class MainCharacter : MonoBehaviour
     public void Movement3PSTopDown()
     {
         if(!isGrounded) return;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movementVector = new Vector3(horizontal, rigidbody.velocity.y, vertical);
+        Vector3 movementVector = new Vector3(horizontal, 0, vertical);
         
         // movementVector = myCamera.TransformDirection(movementVector);
-        movementVector.y = rigidbody.velocity.y;
+        // movementVector.y = rigidbody.velocity.y;
         rigidbody.velocity = movementVector * speed;
         
         if (movementVector.magnitude > 0.1f)

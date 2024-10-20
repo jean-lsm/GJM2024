@@ -4235,9 +4235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMainScene: {fileID: 0}
-  TowerHealth: 100
-  wood: 40
-  stone: 40
+  CastleHealth: 100
+  gold: 1
   playerInRange: 0
 --- !u!1 &1955708492
 GameObject:
@@ -4994,6 +4993,7 @@ MonoBehaviour:
   myCameraRotationReference: {fileID: 1934893712353668722}
   CameraFPS: {fileID: 539272555511304567}
   CameraTPS: {fileID: 6429676119186649947}
+  cameraConstraint: {fileID: 1161246559}
   dashForce: 0
   dashTime: 10
   dragForce: 0

@@ -14,7 +14,7 @@ public class Object : MonoBehaviour
     private void Start() 
     {
         gameMainScene = FindAnyObjectByType<GameManager>();
-        gameMainScene.objects.Add(this);
+        // gameMainScene.objects.Add(this);
     }
 
     private void Update() 
@@ -22,7 +22,7 @@ public class Object : MonoBehaviour
          if(playerInRange && Input.GetKeyDown(KeyCode.Q))
         {
             mainCharacter.objectSelected = this;
-            gameMainScene.playerCurrentObject = this;
+            // gameMainScene.playerCurrentObject = this;
             Debug.Log("player collect object: " + objectId);
         }
     }

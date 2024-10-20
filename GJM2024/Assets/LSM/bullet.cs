@@ -6,14 +6,20 @@ public class bullet : MonoBehaviour
 {
     private void OnEnable()
     {
-        GetComponent<Rigidbody>().AddForce(0, 0, 10000);
+        // GetComponent<Rigidbody>().AddForce(0, 0, 10000);
+        // transform.Translate(100, 0, 0);
         StartCoroutine(DestroyAfterTime());
+    }
+
+    private void Update() 
+    {
+        transform.Translate(Vector3.forward * 5f);
     }
     IEnumerator DestroyAfterTime()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
-        Debug.Log("se foi");
+        Debug.Log("auto destruct");
         yield return null;
     }
 
@@ -21,8 +27,8 @@ public class bullet : MonoBehaviour
     {
         if(other.gameObject.GetComponent<enemy>())
         {
-            Debug.Log("enemy hit");
-            other.gameObject.GetComponent<enemy>().heatlhEnemy -= 25;
+            other.gameObject.GetComponent<enemy>().heatlhEnemy -= 50;
+            Debug.Log("enemy health: " + other.gameObject.GetComponent<enemy>().heatlhEnemy);
             Destroy(this.gameObject);
         }
     }

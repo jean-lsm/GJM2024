@@ -79,13 +79,13 @@ public class HudManager : MonoBehaviour
     }
 
 
-    public void ShowHideMessage(string message)
+    public void ShowHideMessage(string message, int time)
     {
         canvasGroupMessage.gameObject.SetActive(true);
         messageText.text = message;
-        StartCoroutine(_ShowHideMessage());
+        StartCoroutine(_ShowHideMessage(time));
     }
-    IEnumerator _ShowHideMessage()
+    IEnumerator _ShowHideMessage(int time)
     {
         
         while (canvasGroupMessage.alpha != 1f)
@@ -94,7 +94,7 @@ public class HudManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(time);
         while (canvasGroupMessage.alpha != 0f)
         {
             canvasGroupMessage.alpha -= 0.2f;
@@ -102,7 +102,7 @@ public class HudManager : MonoBehaviour
         }
         canvasGroupMessage.gameObject.SetActive(false);
         yield return null;
-        StopCoroutine(_ShowHideMessage());
+        StopCoroutine(_ShowHideMessage(time));
     }
 
 

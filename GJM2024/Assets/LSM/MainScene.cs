@@ -38,12 +38,12 @@ public class MainScene : MonoBehaviour
 
         if(timeSunrise == 590) 
         {
-            hudManager.ShowHideMessage("Talvez eu devesse <color=Green>APERTAR E</color> para observar melhor as estrelas...");
+            // hudManager.ShowHideMessage("Talvez eu devesse <color=Green>APERTAR E</color> para observar melhor as estrelas...");
         }
 
         if(timeSunrise == 300) 
         {
-            hudManager.ShowHideMessage("Estou quase ficando sem tempo!");
+            // hudManager.ShowHideMessage("Estou quase ficando sem tempo!");
         }
     }
     
@@ -70,7 +70,7 @@ public class MainScene : MonoBehaviour
 
     public void GainTime(int reward)
     {
-        hudManager.ShowHideMessage("De algum jeito, parece que tenho mais tempo...");
+        // hudManager.ShowHideMessage("De algum jeito, parece que tenho mais tempo...");
         timeSunrise += reward;
         if (timeSunrise > 600)
         {
